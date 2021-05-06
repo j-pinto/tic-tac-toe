@@ -1,0 +1,55 @@
+#board {
+    display: grid;
+    height: 330px;
+    width: 330px;
+    margin: auto;
+
+    grid-template-columns: 110px, 110px, 110px;
+    grid-template-rows: 110px, 110px, 110px;
+    grid-template-areas: 
+        "square0 square1 square2"
+        "square3 square4 square5"
+        "square6 square7 square8";
+}
+
+.square {
+    height: 100px;
+    width: 100px;
+    background-color: lightslategray;
+}
+
+#square0 {
+    grid-area: square0;
+}
+
+#square1 {
+    grid-area: square1;
+} 
+
+#square2 {
+    grid-area: square2;
+}
+
+#square3 {
+    grid-area: square3;
+} 
+
+#square4 {
+    grid-area: square4;
+} 
+
+#square5 {
+    grid-area: square5;
+}
+
+#square6 {
+    grid-area: square6;
+} 
+
+#square7 {
+    grid-area: square7;
+} 
+
+#square8 {
+    grid-area: square8;
+} 
