@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 #board {
     display: grid;
     height: 330px;
