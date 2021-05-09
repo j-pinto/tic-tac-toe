@@ -14,16 +14,31 @@ const board = (function () {
         }
     }
 
+    const badFormat = function (marker, input) {
+        if (marker != 'x' && marker != 'o') {
+            return true
+        } else if (input < 0 || input > 8 || !(Number.isInteger(input))) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     const getPlayerArray = function(marker) {
         array = marker == 'x' ? board.xArray : board.oArray
         return array
     }
 
-    const addSquare = function(square, array) { return array.push(square) }
+    const addSquare = function(square, array) { 
+        return array.push(square) 
+    }
 
-    const inputValid = function(playerMarker, input) {
-        let array = getPlayerArray(playerMarker);
+    const inputValid = function(marker, input) {
+        if (badFormat(marker, input)) {
+            return false
+        } 
 
+        let array = getPlayerArray(marker);
         if ( squareOccupied(input) ) {
             return false;
         } else {
@@ -32,5 +47,7 @@ const board = (function () {
         }
     }
 
-    return { xArray, oArray, getPlayerArray, squareOccupied, addSquare, inputValid }
+    return { inputValid }
 })();
+
+module.exports = board
