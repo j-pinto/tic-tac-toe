@@ -50,4 +50,20 @@ const board = (function () {
     return { inputValid }
 })();
 
+const game = (function () {
+    let turnCount = 0;
+    
+    /*turn
+    - turn count even/odd determines X/O turn
+    - activate click event listener
+    - only activate listeners for empty squares 
+    - move = player marker with clicked square number
+    - pass move to board.inputValid, should be added
+    - display markers on board
+    - determine if win/tie
+    - next turn 
+    */
+
+})();
+
 module.exports = board
