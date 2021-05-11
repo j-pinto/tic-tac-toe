@@ -5,8 +5,8 @@ const board = (function () {
     let oArray = [];
 
     const squareOccupied = function(square) {
-        let x = board.xArray;
-            o = board.oArray; 
+        let x = xArray;
+            o = oArray; 
         if ( x.includes(square) || o.includes(square) ) {
             return true
         } else {
@@ -25,7 +25,7 @@ const board = (function () {
     }
 
     const getPlayerArray = function(marker) {
-        array = marker == 'x' ? board.xArray : board.oArray
+        array = marker == 'x' ? xArray : oArray
         return array
     }
 
