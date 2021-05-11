@@ -86,7 +86,14 @@ const game = (function () {
     }
 
     const executeMove = function (target) {
-        //pass appropriate value to board based on click
+        marker = getPlayer(turnCount)
+        squareNumber = parseInt(target.id.slice(-1))
+    
+        if (board.inputValid(marker, squareNumber)) {
+            console.log("valid")
+        } else {
+            console.log("invalid")
+        }
     }
 
     return { mouseListen }
