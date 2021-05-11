@@ -1,4 +1,4 @@
-// factory function for board
+// factory functions for board and game
 // used in module pattern (wrapped in IIFE) since only used once
 const board = (function () {
     let xArray = [];
@@ -63,6 +63,33 @@ const game = (function () {
     - determine if win/tie
     - next turn 
     */
+
+    const getPlayer = function(turnCount) {
+        if (turnCount % 2 == 0) {
+            return 'x'
+        } else {
+            return 'o'
+        }
+    }
+
+    const mouseListen = function () {
+        //only set event listeners for empty squares
+
+        let squares = document.getElementsByClassName("square")
+        for (i = 0; i < squares.length; i++) {
+            if (squares.item(i).innerHTML == "") {
+                squares.item(i).addEventListener('click', function(e) {
+                    executeMove(e.target)
+                })
+            }
+        }
+    }
+
+    const executeMove = function (target) {
+        //pass appropriate value to board based on click
+    }
+
+    return { mouseListen }
 
 })();
 
