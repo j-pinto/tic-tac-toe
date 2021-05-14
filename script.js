@@ -103,6 +103,7 @@ const game = (function () {
     
         if (board.inputValid(marker, squareNumber)) {
             console.log("valid")
+            turnCount++;
         } else {
             console.log("invalid")
         }
