@@ -103,10 +103,15 @@ const game = (function () {
     
         if (board.inputValid(marker, squareNumber)) {
             console.log("valid")
-            turnCount++;
+            nextTurn();
         } else {
             console.log("invalid")
         }
+    }
+
+    const nextTurn = function() {
+        turnCount++;
+        document.getElementById("prompt").innerHTML = movePrompt();
     }
 
     const movePrompt = function() {
