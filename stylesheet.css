@@ -2,6 +2,16 @@ body {
     background-color: black;
 }
 
+#prompt_container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+#prompt {
+    color: white;
+}
+
 #board {
     display: grid;
     height: 330px;
