@@ -109,6 +109,14 @@ const game = (function () {
         }
     }
 
+    const movePrompt = function() {
+        if (turnCount % 2 == 0) {
+            return "X's turn. Click an empty square to place move"
+        } else {
+            return "O's turn. Click an empty square to place move"
+        }
+    }
+
     return { mouseListen }
 
 })();
