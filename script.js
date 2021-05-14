@@ -53,6 +53,10 @@ const board = (function () {
         xArray.forEach(element => {
             squares.item(element).innerHTML = 'x'
         });
+
+        oArray.forEach(element => {
+            squares.item(element).innerHTML = 'o'
+        });
     }
 
     return { inputValid }
