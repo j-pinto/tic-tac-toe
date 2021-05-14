@@ -43,8 +43,16 @@ const board = (function () {
             return false;
         } else {
             addSquare(input, array);
+            refresh();
             return true;
         }
+    }
+
+    const refresh = function() {
+        let squares = document.getElementsByClassName("square")
+        xArray.forEach(element => {
+            squares.item(element).innerHTML = 'x'
+        });
     }
 
     return { inputValid }
