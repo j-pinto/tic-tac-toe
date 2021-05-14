@@ -122,7 +122,12 @@ const game = (function () {
         }
     }
 
-    return { mouseListen }
+    const play = function() {
+        document.getElementById("prompt").innerHTML = movePrompt();
+        mouseListen();
+    }
+
+    return { play }
 
 })();
 
