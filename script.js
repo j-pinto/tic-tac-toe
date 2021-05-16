@@ -43,7 +43,6 @@ const board = (function () {
             return false;
         } else {
             addSquare(input, array);
-            refresh();
             return true;
         }
     }
@@ -59,7 +58,7 @@ const board = (function () {
         });
     }
 
-    return { inputValid }
+    return { inputValid, refresh }
 })();
 
 const game = (function () {
@@ -110,6 +109,7 @@ const game = (function () {
     }
 
     const nextTurn = function() {
+        board.refresh();
         turnCount++;
         document.getElementById("prompt").innerHTML = movePrompt();
     }
