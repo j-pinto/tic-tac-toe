@@ -87,17 +87,6 @@ const board = (function () {
 const game = (function () {
     let turnCount = 0;
     
-    /*turn
-    - turn count even/odd determines X/O turn
-    - activate click event listener
-    - only activate listeners for empty squares 
-    - move = player marker with clicked square number
-    - pass move to board.inputValid, should be added
-    - display markers on board
-    - determine if win/tie
-    - next turn 
-    */
-
     const getPlayer = function(turnCount) {
         if (turnCount % 2 == 0) {
             return 'x'
@@ -107,8 +96,6 @@ const game = (function () {
     }
 
     const mouseListen = function () {
-        //only set event listeners for empty squares
-
         let squares = document.getElementsByClassName("square")
         for (i = 0; i < squares.length; i++) {
             if (squares.item(i).innerHTML == "") {
