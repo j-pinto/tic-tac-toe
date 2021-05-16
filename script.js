@@ -4,6 +4,17 @@ const board = (function () {
     let xArray = [];
     let oArray = [];
 
+    let winCombos = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+
     const squareOccupied = function(square) {
         let x = xArray;
             o = oArray; 
@@ -58,7 +69,19 @@ const board = (function () {
         });
     }
 
-    return { inputValid, refresh }
+    const win = function(marker) {
+        let isWin = false;
+        playerArray = getPlayerArray(marker);
+
+        winCombos.forEach(combo => {
+            if ( combo.every(element => playerArray.includes(element)) ) {
+                isWin = true;
+            }
+        })
+        return isWin;
+    }
+
+    return { inputValid, refresh, win }
 })();
 
 const game = (function () {

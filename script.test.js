@@ -29,3 +29,16 @@ it('rejects bad inputs', () => {
     let outcome3 = board.inputValid('o', 0.99)
     expect(outcome3).toBe(false)
 })
+
+it('correctly determines player has won', () => {
+    board.xArray = []
+    board.oArray = []
+    board.inputValid('o', 2)
+    board.inputValid('o', 4)
+    board.inputValid('o', 6)
+
+    let outcome = board.win('o')
+    expect(outcome).toBe(true)
+})
+
+
