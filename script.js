@@ -98,17 +98,13 @@ const game = (function () {
     const mouseListen = function () {
         let squares = document.getElementsByClassName("square")
         for (i = 0; i < squares.length; i++) {
-            if (squares.item(i).innerHTML == "") {
-                squares.item(i).addEventListener('click', function(e) {
-                    executeMove(e.target)
-                })
-            }
+            squares.item(i).addEventListener( 'click', executeMove )
         }
     }
 
-    const executeMove = function (target) {
+    const executeMove = function (event) {
         marker = getPlayer(turnCount)
-        squareNumber = parseInt(target.id.slice(-1))
+        squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
             console.log("valid")
