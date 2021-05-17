@@ -123,10 +123,7 @@ const game = (function () {
         squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
-            console.log("valid")
             nextTurn();
-        } else {
-            console.log("invalid")
         }
     }
 
