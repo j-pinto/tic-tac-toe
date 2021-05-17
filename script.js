@@ -120,8 +120,14 @@ const game = (function () {
 
     const nextTurn = function() {
         board.refresh();
-        turnCount++;
-        document.getElementById("prompt").innerHTML = movePrompt();
+        marker = getPlayer(turnCount)
+        
+        if ( board.win(marker) ) {
+            endGame();
+        } else {
+            turnCount++;
+            document.getElementById("prompt").innerHTML = movePrompt();
+        }
     }
 
     const movePrompt = function() {
