@@ -9,7 +9,14 @@ body {
 }
 
 #prompt {
+    justify-content: center;
     color: white;
+}
+
+#button_container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
 }
 
 #board {

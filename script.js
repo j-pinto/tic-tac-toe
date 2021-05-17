@@ -153,6 +153,17 @@ const game = (function () {
 })();
 
 const prompts = (function() {
+    const intro = function() {
+        startPrompt = 'Welcome to Tic-Tac-Toe! Click the button below to start a new game.'
+        promptDiv = document.getElementById("prompt").innerHTML = startPrompt;
+
+        button = document.createElement("button")
+        button.innerHTML = 'Start Game'
+        document.getElementById("button_container").appendChild(button)
+
+        //document.getElementById("button").addEventListener("click", enterPlayers)
+    }
+
     const move = function() {
         marker = game.getPlayer();
         marker = marker.toUpperCase();
@@ -172,7 +183,7 @@ const prompts = (function() {
         document.getElementById("prompt").innerHTML = tiePrompt
     }
 
-    return { move, winGame, tieGame }
+    return { move, winGame, tieGame, intro }
 })();
 
 module.exports = board
