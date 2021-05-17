@@ -121,13 +121,19 @@ const game = (function () {
     const nextTurn = function() {
         board.refresh();
         marker = getPlayer(turnCount)
-        
+
         if ( board.win(marker) ) {
-            endGame();
+            winGame(marker);
         } else {
             turnCount++;
             document.getElementById("prompt").innerHTML = movePrompt();
         }
+    }
+
+    const winGame = function(marker) {
+        marker = marker.toUpperCase()
+        winPrompt = `${marker} is the winner!!!`
+        document.getElementById("prompt").innerHTML = winPrompt
     }
 
     const movePrompt = function() {
