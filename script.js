@@ -158,10 +158,23 @@ const prompts = (function() {
         promptDiv = document.getElementById("prompt").innerHTML = startPrompt;
 
         button = document.createElement("button")
+        button.id = "button1"
         button.innerHTML = 'Start Game'
         document.getElementById("button_container").appendChild(button)
 
-        //document.getElementById("button").addEventListener("click", enterPlayers)
+        document.getElementById("button1").addEventListener("click", selectMatch)
+    }
+
+    const selectMatch = function() {
+        document.getElementById("button1").removeEventListener("click", selectMatch)
+        
+        document.getElementById("prompt").innerHTML = "Select match type:";
+        document.getElementById("button1").innerHTML = "Player vs Player"
+
+        button = document.createElement("button")
+        button.id = "button2"
+        button.innerHTML = "Player vs Computer"
+        document.getElementById("button_container").appendChild(button)
     }
 
     const move = function() {
