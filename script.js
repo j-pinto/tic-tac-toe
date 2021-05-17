@@ -139,12 +139,12 @@ const game = (function () {
             prompts.tieGame();
         } else {
             turnCount++;
-            prompts.movePrompt();
+            prompts.move();
         }
     }
 
     const play = function() {
-        prompts.movePrompt();
+        prompts.move();
         mouseListen();
     }
 
@@ -153,12 +153,12 @@ const game = (function () {
 })();
 
 const prompts = (function() {
-    const movePrompt = function() {
+    const move = function() {
         marker = game.getPlayer();
         marker = marker.toUpperCase();
-        mPrompt = `${marker}'s turn. Click an empty square to place move.`
+        movePrompt = `${marker}'s turn. Click an empty square to place move.`
     
-        document.getElementById("prompt").innerHTML = mPrompt;
+        document.getElementById("prompt").innerHTML = movePrompt;
     }
     
     const winGame = function(marker) {
@@ -172,7 +172,7 @@ const prompts = (function() {
         document.getElementById("prompt").innerHTML = tiePrompt
     }
 
-    return { movePrompt, winGame, tieGame }
+    return { move, winGame, tieGame }
 })();
 
 module.exports = board
