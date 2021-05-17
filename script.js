@@ -96,7 +96,7 @@ const board = (function () {
 const game = (function () {
     let turnCount = 0;
     
-    const getPlayer = function(turnCount) {
+    const getPlayer = function() {
         if (turnCount % 2 == 0) {
             return 'x'
         } else {
@@ -119,7 +119,7 @@ const game = (function () {
     }
 
     const executeMove = function (event) {
-        marker = getPlayer(turnCount)
+        marker = getPlayer()
         squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
@@ -132,7 +132,7 @@ const game = (function () {
 
     const nextTurn = function() {
         board.refresh();
-        marker = getPlayer(turnCount)
+        marker = getPlayer()
 
         if ( board.win(marker) ) {
             endMouseListen();
