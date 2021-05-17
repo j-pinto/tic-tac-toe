@@ -81,7 +81,16 @@ const board = (function () {
         return isWin;
     }
 
-    return { inputValid, refresh, win }
+    const tie = function() {
+        occupiedSquares = xArray.length + oArray.length
+        if (occupiedSquares >= 9) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    return { inputValid, refresh, win, tie }
 })();
 
 const game = (function () {
@@ -128,6 +137,9 @@ const game = (function () {
         if ( board.win(marker) ) {
             endMouseListen();
             winGame(marker);
+        } else if ( board.tie() ) {
+            //endMouseListen();
+            //tieGame();
         } else {
             turnCount++;
             document.getElementById("prompt").innerHTML = movePrompt();
