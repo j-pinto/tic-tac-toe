@@ -138,8 +138,8 @@ const game = (function () {
             endMouseListen();
             winGame(marker);
         } else if ( board.tie() ) {
-            //endMouseListen();
-            //tieGame();
+            endMouseListen();
+            tieGame();
         } else {
             turnCount++;
             document.getElementById("prompt").innerHTML = movePrompt();
@@ -150,6 +150,11 @@ const game = (function () {
         marker = marker.toUpperCase()
         winPrompt = `${marker} is the winner!!!`
         document.getElementById("prompt").innerHTML = winPrompt
+    }
+
+    const tieGame= function() {
+        tiePrompt = `Game is a draw`
+        document.getElementById("prompt").innerHTML = tiePrompt
     }
 
     const movePrompt = function() {
