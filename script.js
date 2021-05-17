@@ -102,6 +102,13 @@ const game = (function () {
         }
     }
 
+    const endMouseListen = function() {
+        let squares = document.getElementsByClassName("square")
+        for (i = 0; i < squares.length; i++) {
+            squares.item(i).removeEventListener( 'click', executeMove )
+        }
+    }
+
     const executeMove = function (event) {
         marker = getPlayer(turnCount)
         squareNumber = parseInt(event.target.id.slice(-1))
@@ -119,6 +126,7 @@ const game = (function () {
         marker = getPlayer(turnCount)
 
         if ( board.win(marker) ) {
+            endMouseListen();
             winGame(marker);
         } else {
             turnCount++;
