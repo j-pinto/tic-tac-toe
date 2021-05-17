@@ -133,42 +133,46 @@ const game = (function () {
 
         if ( board.win(marker) ) {
             endMouseListen();
-            winGame(marker);
+            prompts.winGame(marker);
         } else if ( board.tie() ) {
             endMouseListen();
-            tieGame();
+            prompts.tieGame();
         } else {
             turnCount++;
-            movePrompt();
+            prompts.movePrompt();
         }
     }
 
+    const play = function() {
+        prompts.movePrompt();
+        mouseListen();
+    }
+
+    return { play, getPlayer }
+
+})();
+
+const prompts = (function() {
+    const movePrompt = function() {
+        marker = game.getPlayer();
+        marker = marker.toUpperCase();
+        mPrompt = `${marker}'s turn. Click an empty square to place move.`
+    
+        document.getElementById("prompt").innerHTML = mPrompt;
+    }
+    
     const winGame = function(marker) {
         marker = marker.toUpperCase()
         winPrompt = `${marker} is the winner!!!`
         document.getElementById("prompt").innerHTML = winPrompt
     }
-
+    
     const tieGame= function() {
         tiePrompt = `Game is a draw`
         document.getElementById("prompt").innerHTML = tiePrompt
     }
 
-    const movePrompt = function() {
-        marker = getPlayer();
-        marker = marker.toUpperCase();
-        mPrompt = `${marker}'s turn. Click an empty square to place move.`
-
-        document.getElementById("prompt").innerHTML = mPrompt;
-    }
-
-    const play = function() {
-        movePrompt();
-        mouseListen();
-    }
-
-    return { play }
-
+    return { movePrompt, winGame, tieGame }
 })();
 
 module.exports = board
