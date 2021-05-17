@@ -142,7 +142,7 @@ const game = (function () {
             tieGame();
         } else {
             turnCount++;
-            document.getElementById("prompt").innerHTML = movePrompt();
+            movePrompt();
         }
     }
 
@@ -158,15 +158,15 @@ const game = (function () {
     }
 
     const movePrompt = function() {
-        if (turnCount % 2 == 0) {
-            return "X's turn. Click an empty square to place move"
-        } else {
-            return "O's turn. Click an empty square to place move"
-        }
+        marker = getPlayer();
+        marker = marker.toUpperCase();
+        mPrompt = `${marker}'s turn. Click an empty square to place move.`
+
+        document.getElementById("prompt").innerHTML = mPrompt;
     }
 
     const play = function() {
-        document.getElementById("prompt").innerHTML = movePrompt();
+        movePrompt();
         mouseListen();
     }
 
