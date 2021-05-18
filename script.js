@@ -99,9 +99,9 @@ const game = (function () {
 
     const getPlayer = function() {
         if (turnCount % 2 == 0) {
-            return 'x'
+            return playerX
         } else {
-            return 'o'
+            return playerO
         }
     }
 
@@ -120,7 +120,7 @@ const game = (function () {
     }
 
     const executeMove = function (event) {
-        marker = getPlayer()
+        marker = getPlayer().marker
         squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
@@ -130,7 +130,7 @@ const game = (function () {
 
     const nextTurn = function() {
         board.refresh();
-        marker = getPlayer()
+        marker = getPlayer().marker
 
         if ( board.win(marker) ) {
             endMouseListen();
@@ -206,8 +206,7 @@ const prompts = (function() {
     }
 
     const move = function() {
-        marker = game.getPlayer();
-        marker = marker.toUpperCase();
+        let marker = game.getPlayer().marker.toUpperCase();
         movePrompt = `${marker}'s turn. Click an empty square to place move.`
     
         document.getElementById("prompt").innerHTML = movePrompt;
