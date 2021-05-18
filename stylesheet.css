@@ -19,6 +19,11 @@ body {
     justify-content: center;
 }
 
+form {
+    display: none;
+    text-align: center;
+}
+
 #board {
     display: grid;
     height: 330px;
