@@ -95,7 +95,8 @@ const board = (function () {
 
 const game = (function () {
     let turnCount = 0;
-    
+    let playerX, playerO;
+
     const getPlayer = function() {
         if (turnCount % 2 == 0) {
             return 'x'
@@ -148,7 +149,7 @@ const game = (function () {
         mouseListen();
     }
 
-    return { play, getPlayer }
+    return { play, getPlayer, playerX, playerO }
 
 })();
 
@@ -176,12 +177,12 @@ const prompts = (function() {
         button2.innerHTML = "Player vs Computer"
 
         document.getElementById("button1").addEventListener("click", enterPlayerInfo)
-        document.getElementById("button2").addEventListener("click", enterSettings)
+        document.getElementById("button2").addEventListener("click", enterAIMatchSettings)
     }
 
     const enterPlayerInfo = function() {
         document.getElementById("button1").removeEventListener("click", enterPlayerInfo);
-        document.getElementById("button2").removeEventListener("click", enterSettings);
+        document.getElementById("button2").removeEventListener("click", enterAIMatchSettings);
         document.getElementById("button_container").style.display = "none"
 
         document.getElementById("prompt").innerHTML = "Enter player names"
@@ -195,10 +196,11 @@ const prompts = (function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
-        // TODO
+        game.playerX = player('human', 'x', xName)
+        game.playerO = player('human', 'o', oName)
     }
 
-    const enterSettings = function() {
+    const enterAIMatchSettings = function() {
         // TODO
         return
     }
@@ -224,5 +226,12 @@ const prompts = (function() {
 
     return { move, winGame, tieGame, intro }
 })();
+
+const player = function(playerType, playerMarker, playerName) {
+    const type = playerType
+    const name = playerName
+    const marker = playerMarker
+    return {type, marker, name}
+}
 
 module.exports = board
