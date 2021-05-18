@@ -175,8 +175,32 @@ const prompts = (function() {
         button2.style.display = "block"
         button2.innerHTML = "Player vs Computer"
 
-        //document.getElementById("button1").addEventListener("click", enterPlayerInfo)
-        //document.getElementById("button2").addEventListener("click", enterSettings)
+        document.getElementById("button1").addEventListener("click", enterPlayerInfo)
+        document.getElementById("button2").addEventListener("click", enterSettings)
+    }
+
+    const enterPlayerInfo = function() {
+        document.getElementById("button1").removeEventListener("click", enterPlayerInfo);
+        document.getElementById("button2").removeEventListener("click", enterSettings);
+        document.getElementById("button_container").style.display = "none"
+
+        document.getElementById("prompt").innerHTML = "Enter player names"
+        form = document.getElementById("form")
+        form.style.display = "block"
+        form.addEventListener("submit", createPlayers)
+    }
+
+    const createPlayers = function(event) {
+        event.preventDefault();
+        let xName = document.getElementById("xName").value
+        let oName = document.getElementById("oName").value
+
+        // TODO
+    }
+
+    const enterSettings = function() {
+        // TODO
+        return
     }
 
     const move = function() {
