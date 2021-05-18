@@ -154,27 +154,29 @@ const game = (function () {
 
 const prompts = (function() {
     const intro = function() {
-        startPrompt = 'Welcome to Tic-Tac-Toe! Click the button below to start a new game.'
-        promptDiv = document.getElementById("prompt").innerHTML = startPrompt;
+        startPrompt = "Welcome to Tic-Tac-Toe! Click the button below to start a new game."
+        document.getElementById("prompt").innerHTML = startPrompt;
 
-        button = document.createElement("button")
-        button.id = "button1"
-        button.innerHTML = 'Start Game'
-        document.getElementById("button_container").appendChild(button)
+        document.getElementById("button_container").style.display = "flex"
+        document.getElementById("button2").style.display = "none"
 
-        document.getElementById("button1").addEventListener("click", selectMatch)
+        button1 = document.getElementById("button1")
+        button1.innerHTML = "Start Game"
+        button1.addEventListener("click", selectMatch)
     }
 
     const selectMatch = function() {
         document.getElementById("button1").removeEventListener("click", selectMatch)
-        
-        document.getElementById("prompt").innerHTML = "Select match type:";
+
+        document.getElementById("prompt").innerHTML = "Select match type:"
         document.getElementById("button1").innerHTML = "Player vs Player"
 
-        button = document.createElement("button")
-        button.id = "button2"
-        button.innerHTML = "Player vs Computer"
-        document.getElementById("button_container").appendChild(button)
+        button2 = document.getElementById("button2")
+        button2.style.display = "block"
+        button2.innerHTML = "Player vs Computer"
+
+        //document.getElementById("button1").addEventListener("click", enterPlayerInfo)
+        //document.getElementById("button2").addEventListener("click", enterSettings)
     }
 
     const move = function() {
