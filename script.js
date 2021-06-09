@@ -190,14 +190,17 @@ const prompts = (function() {
     }
 
     const enterPlayerInfo = function() {
-        document.getElementById("button1").removeEventListener("click", enterPlayerInfo);
-        document.getElementById("button2").removeEventListener("click", enterAIMatchSettings);
-        document.getElementById("button_container").style.display = "none"
+        return new Promise(function(resolve) {
+            document.getElementById("button_container").style.display = "none"
 
-        document.getElementById("prompt").innerHTML = "Enter player names"
-        form = document.getElementById("form")
-        form.style.display = "block"
-        form.addEventListener("submit", createPlayers)
+            document.getElementById("prompt").innerHTML = "Enter player names"
+            form = document.getElementById("form")
+            form.style.display = "block"
+    
+            form.onsubmit = function() {
+                resolve();
+            }
+        });
     }
 
     const createPlayers = function(event) {
