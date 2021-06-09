@@ -145,8 +145,7 @@ const game = (function () {
     }
 
     const play = function() {
-        prompts.move();
-        mouseListen();
+        // TODO
     }
 
     return { play, getPlayer, playerX, playerO }
@@ -155,15 +154,20 @@ const game = (function () {
 
 const prompts = (function() {
     const intro = function() {
-        startPrompt = "Welcome to Tic-Tac-Toe! Click the button below to start a new game."
-        document.getElementById("prompt").innerHTML = startPrompt;
-
-        document.getElementById("button_container").style.display = "flex"
-        document.getElementById("button2").style.display = "none"
-
-        button1 = document.getElementById("button1")
-        button1.innerHTML = "Start Game"
-        button1.addEventListener("click", selectMatch)
+        return new Promise(function (resolve) {
+            startPrompt = "Welcome to Tic-Tac-Toe! Click the button below to start a new game."
+            document.getElementById("prompt").innerHTML = startPrompt;
+    
+            document.getElementById("button_container").style.display = "flex"
+            document.getElementById("button2").style.display = "none"
+    
+            button1 = document.getElementById("button1")
+            button1.innerHTML = "Start Game"
+            
+            button1.onclick = function() {
+                resolve();
+            }          
+        });
     }
 
     const selectMatch = function() {
