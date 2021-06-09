@@ -171,17 +171,22 @@ const prompts = (function() {
     }
 
     const selectMatch = function() {
-        document.getElementById("button1").removeEventListener("click", selectMatch)
-
-        document.getElementById("prompt").innerHTML = "Select match type:"
-        document.getElementById("button1").innerHTML = "Player vs Player"
-
-        button2 = document.getElementById("button2")
-        button2.style.display = "block"
-        button2.innerHTML = "Player vs Computer"
-
-        document.getElementById("button1").addEventListener("click", enterPlayerInfo)
-        document.getElementById("button2").addEventListener("click", enterAIMatchSettings)
+        return new Promise(function(resolve) {
+            document.getElementById("prompt").innerHTML = "Select match type:"
+            document.getElementById("button1").innerHTML = "Player vs Player"
+    
+            button2 = document.getElementById("button2")
+            button2.style.display = "block"
+            button2.innerHTML = "Player vs Computer"
+    
+            button1.onclick = function() {
+                resolve();
+            }
+    
+            button2.onclick = function() {
+                resolve();
+            }  
+        });
     }
 
     const enterPlayerInfo = function() {
