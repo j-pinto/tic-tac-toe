@@ -180,13 +180,23 @@ const prompts = (function() {
             button2.innerHTML = "Player vs Computer"
     
             button1.onclick = function() {
-                resolve();
+                resolve(0);
             }
     
             button2.onclick = function() {
-                resolve();
+                resolve(1);
             }  
         });
+    }
+
+    const enterMatchInfo = function(value) {
+        return new Promise(function(resolve) {
+            if (value == 0) {
+                enterPlayerInfo().then(() => resolve())
+            } else {
+                enterAIMatchSettings().then(() => resolve())
+            }
+        })
     }
 
     const enterPlayerInfo = function() {
@@ -203,18 +213,18 @@ const prompts = (function() {
         });
     }
 
+    const enterAIMatchSettings = function() {
+        return new Promise(function(resolve) {
+            resolve();
+        })
+    }
+
     const createPlayers = function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
         game.playerX = player('human', 'x', xName)
         game.playerO = player('human', 'o', oName)
-    }
-
-    const enterAIMatchSettings = function() {
-        return new Promise(function(resolve) {
-            resolve();
-        })
     }
 
     const move = function() {
