@@ -203,8 +203,7 @@ const prompts = (function() {
         });
     }
 
-    const createPlayers = function(event) {
-        event.preventDefault();
+    const createPlayers = function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
@@ -213,8 +212,9 @@ const prompts = (function() {
     }
 
     const enterAIMatchSettings = function() {
-        // TODO
-        return
+        return new Promise(function(resolve) {
+            resolve();
+        })
     }
 
     const move = function() {
