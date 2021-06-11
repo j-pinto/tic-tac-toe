@@ -153,6 +153,14 @@ const game = (function () {
 })();
 
 const prompts = (function() {
+    const setupSequence = function() {
+        intro()
+        .then(() => selectMatch())
+        .then((value) => enterMatchInfo(value))
+        .then(() => createPlayers())
+        .then(() => console.log('match settings entered'))
+    }
+    
     const intro = function() {
         return new Promise(function (resolve) {
             startPrompt = "Welcome to Tic-Tac-Toe! Click the button below to start a new game."
