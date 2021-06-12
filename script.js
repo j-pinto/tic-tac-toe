@@ -157,8 +157,6 @@ const prompts = (function() {
         intro()
         .then(() => selectMatch())
         .then((value) => enterMatchInfo(value))
-        .then(() => createPlayers())
-        .then(() => console.log('match settings entered'))
     }
 
     const intro = function() {
@@ -216,7 +214,12 @@ const prompts = (function() {
             form.style.display = "block"
     
             form.onsubmit = function() {
-                resolve();
+                createPlayers()
+                form.reset()
+                form.style.display = "none"
+
+                resolve()
+                return false
             }
         });
     }
