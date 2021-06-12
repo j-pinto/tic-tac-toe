@@ -155,7 +155,7 @@ const game = (function () {
 const prompts = (function() {
     const setupSequence = function() {
         intro()
-        .then(() => selectMatch())
+        .then(() => selectMatchType())
         .then((value) => enterMatchInfo(value))
     }
 
@@ -167,29 +167,31 @@ const prompts = (function() {
             document.getElementById("button_container").style.display = "flex"
             document.getElementById("button2").style.display = "none"
     
-            button1 = document.getElementById("button1")
-            button1.innerHTML = "Start Game"
+            startButton = document.getElementById("button1")
+            startButton.innerHTML = "Start Game"
             
-            button1.onclick = function() {
+            startButton.onclick = function() {
                 resolve();
             }          
         });
     }
 
-    const selectMatch = function() {
+    const selectMatchType = function() {
         return new Promise(function(resolve) {
             document.getElementById("prompt").innerHTML = "Select match type:"
-            document.getElementById("button1").innerHTML = "Player vs Player"
+
+            pvpButton = document.getElementById("button1")
+            pvpButton.innerHTML = "Player vs Player"
+
+            pvcButton = document.getElementById("button2")
+            pvcButton.style.display = "block"
+            pvcButton.innerHTML = "Player vs Computer"
     
-            button2 = document.getElementById("button2")
-            button2.style.display = "block"
-            button2.innerHTML = "Player vs Computer"
-    
-            button1.onclick = function() {
+            pvpButton.onclick = function() {
                 resolve(0);
             }
     
-            button2.onclick = function() {
+            pvcButton.onclick = function() {
                 resolve(1);
             }  
         });
@@ -198,14 +200,14 @@ const prompts = (function() {
     const enterMatchInfo = function(value) {
         return new Promise(function(resolve) {
             if (value == 0) {
-                enterPlayerInfo().then(() => resolve())
+                enterPlayerNames().then(() => resolve())
             } else {
                 enterAIMatchSettings().then(() => resolve())
             }
         })
     }
 
-    const enterPlayerInfo = function() {
+    const enterPlayerNames = function() {
         return new Promise(function(resolve) {
             document.getElementById("button_container").style.display = "none"
 
