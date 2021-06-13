@@ -153,10 +153,14 @@ const game = (function () {
 })();
 
 const prompts = (function() {
+
     const setupSequence = function() {
-        intro()
-        .then(() => selectMatchType())
-        .then((value) => enterMatchInfo(value))
+        return new Promise(function() {
+            intro()
+            .then(() => selectMatchType())
+            .then((value) => enterMatchInfo(value))
+            .then(() => resolve())  
+        })
     }
 
     const intro = function() {
