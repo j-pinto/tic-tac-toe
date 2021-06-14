@@ -160,7 +160,10 @@ const game = (function () {
 
     const play = function() {
         prompts.setupSequence()
-        .then(() => mouseListen())
+        .then(() => {
+            prompts.move()
+            mouseListen()
+        })
     }
 
     return { play, getPlayer, setPlayer }
