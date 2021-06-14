@@ -144,10 +144,11 @@ const game = (function () {
     const nextTurn = function() {
         board.refresh();
         marker = getPlayer().marker
+        playerName = getPlayer().name
 
         if ( board.win(marker) ) {
             endMouseListen();
-            prompts.winGame(marker);
+            prompts.winGame(playerName);
         } else if ( board.tie() ) {
             endMouseListen();
             prompts.tieGame();
@@ -259,15 +260,14 @@ const prompts = (function() {
     }
 
     const move = function() {
-        let marker = game.getPlayer().marker.toUpperCase();
-        movePrompt = `${marker}'s turn. Click an empty square to place move.`
+        let name = game.getPlayer().name;
+        movePrompt = `${name}'s turn. Click an empty square to place move.`
     
         document.getElementById("prompt").innerHTML = movePrompt;
     }
     
-    const winGame = function(marker) {
-        marker = marker.toUpperCase()
-        winPrompt = `${marker} is the winner!!!`
+    const winGame = function(name) {
+        winPrompt = `${name} is the winner!!!`
         document.getElementById("prompt").innerHTML = winPrompt
     }
     
