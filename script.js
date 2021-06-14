@@ -1,5 +1,3 @@
-// factory functions for board and game
-// used in module pattern (wrapped in IIFE) since only used once
 const board = (function () {
     let xArray = [];
     let oArray = [];
@@ -110,8 +108,6 @@ const game = (function () {
         } else {
             playerO = new Player(type, marker, name);
         }
-
-        console.log(playerX.name, playerO.name)
     }
 
     const getPlayer = function() {
