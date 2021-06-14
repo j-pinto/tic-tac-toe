@@ -158,7 +158,8 @@ const game = (function () {
     }
 
     const play = function() {
-        // TODO
+        prompts.setupSequence()
+        .then(() => mouseListen())
     }
 
     return { play, getPlayer, setPlayer }
