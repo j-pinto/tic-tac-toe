@@ -95,7 +95,24 @@ const board = (function () {
 
 const game = (function () {
     let turnCount = 0;
-    let playerX, playerO;
+    let playerX = {};
+    let playerO = {};
+
+     function Player(type, marker, name) {
+        this.type = type
+        this.name = name
+        this.marker = marker
+    }
+
+    const setPlayer = function(type, marker, name) {
+        if (marker == 'x') {
+            playerX = new Player(type, marker, name);
+        } else {
+            playerO = new Player(type, marker, name);
+        }
+
+        console.log(playerX.name, playerO.name)
+    }
 
     const getPlayer = function() {
         if (turnCount % 2 == 0) {
@@ -148,14 +165,14 @@ const game = (function () {
         // TODO
     }
 
-    return { play, getPlayer, playerX, playerO }
+    return { play, getPlayer, setPlayer }
 
 })();
 
 const prompts = (function() {
 
     const setupSequence = function() {
-        return new Promise(function() {
+        return new Promise(function (resolve) {
             intro()
             .then(() => selectMatchType())
             .then((value) => enterMatchInfo(value))
@@ -240,8 +257,8 @@ const prompts = (function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
-        game.playerX = player('human', 'x', xName)
-        game.playerO = player('human', 'o', oName)
+        game.setPlayer('human','x', xName)
+        game.setPlayer('human','o', oName)
     }
 
     const move = function() {
@@ -257,7 +274,7 @@ const prompts = (function() {
         document.getElementById("prompt").innerHTML = winPrompt
     }
     
-    const tieGame= function() {
+    const tieGame = function() {
         tiePrompt = `Game is a draw`
         document.getElementById("prompt").innerHTML = tiePrompt
     }
@@ -265,11 +282,5 @@ const prompts = (function() {
     return { move, winGame, tieGame, setupSequence }
 })();
 
-const player = function(playerType, playerMarker, playerName) {
-    const type = playerType
-    const name = playerName
-    const marker = playerMarker
-    return {type, marker, name}
-}
 
 module.exports = board
