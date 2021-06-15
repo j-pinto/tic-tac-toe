@@ -24,6 +24,10 @@ form {
     text-align: center;
 }
 
+label {
+    color: white;
+}
+
 #board {
     display: grid;
     height: 330px;
