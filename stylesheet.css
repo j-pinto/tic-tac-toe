@@ -50,6 +50,9 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: white;
+    font-size: 48pt;
 }
 
 #square0 {
