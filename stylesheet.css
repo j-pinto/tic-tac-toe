@@ -46,6 +46,10 @@ label {
     height: 100px;
     width: 100px;
     background-color: lightslategray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #square0 {
