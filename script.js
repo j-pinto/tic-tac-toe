@@ -234,11 +234,11 @@ const prompts = (function() {
             document.getElementById("button_container").style.display = "none"
 
             document.getElementById("prompt").innerHTML = "Enter player names"
-            form = document.getElementById("form")
+            form = document.getElementById("pvp_form")
             form.style.display = "block"
     
             form.onsubmit = function() {
-                createPlayers()
+                createPvPPlayers()
                 form.reset()
                 form.style.display = "none"
 
@@ -254,7 +254,7 @@ const prompts = (function() {
         })
     }
 
-    const createPlayers = function() {
+    const createPvPPlayers = function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
