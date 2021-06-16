@@ -250,7 +250,20 @@ const prompts = (function() {
 
     const enterAIMatchSettings = function() {
         return new Promise(function(resolve) {
-            resolve();
+            document.getElementById("button_container").style.display = "none"
+
+            document.getElementById("prompt").innerHTML = "Enter match settings"
+            form = document.getElementById("pvc_form")
+            form.style.display = "block"
+                        
+            form.onsubmit = function() {
+                createPvPPlayers()
+                form.reset()
+                form.style.display = "none"
+
+                resolve()
+                return false
+            }
         })
     }
 
