@@ -121,24 +121,28 @@ const game = (function () {
     const mouseListen = function () {
         let squares = document.getElementsByClassName("square")
         for (i = 0; i < squares.length; i++) {
-            squares.item(i).addEventListener( 'click', executeMove )
+            squares.item(i).addEventListener( 'click', executeHumanMove )
         }
     }
 
     const endMouseListen = function() {
         let squares = document.getElementsByClassName("square")
         for (i = 0; i < squares.length; i++) {
-            squares.item(i).removeEventListener( 'click', executeMove )
+            squares.item(i).removeEventListener( 'click', executeHumanMove )
         }
     }
 
-    const executeMove = function (event) {
+    const executeHumanMove = function (event) {
         marker = getPlayer().marker
         squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
             nextTurn();
         }
+    }
+
+    const humanTurn = function() {
+        mouseListen();
     }
 
     const nextTurn = function() {
@@ -162,7 +166,7 @@ const game = (function () {
         prompts.setupSequence()
         .then(() => {
             prompts.move()
-            mouseListen()
+            humanTurn()
         })
     }
 
