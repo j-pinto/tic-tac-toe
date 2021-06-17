@@ -255,9 +255,9 @@ const prompts = (function() {
             document.getElementById("prompt").innerHTML = "Enter match settings"
             form = document.getElementById("pvc_form")
             form.style.display = "block"
-                        
+
             form.onsubmit = function() {
-                createPvPPlayers()
+                createPvCPlayers()
                 form.reset()
                 form.style.display = "none"
 
@@ -265,6 +265,20 @@ const prompts = (function() {
                 return false
             }
         })
+    }
+
+    const createPvCPlayers = function() {
+        let pName = document.getElementById("pName").value
+
+        let xRadioButton = document.getElementById("x_radio").checked
+        let pMarker;
+        xRadioButton == true ? pMarker = 'x' : pMarker = 'o'
+
+        let cMarker;
+        pMarker == 'x' ? cMarker = 'o' : cMarker = 'x'
+
+        game.setPlayer('human', pMarker, pName)
+        game.setPlayer('computer', cMarker, 'Computer')
     }
 
     const createPvPPlayers = function() {
