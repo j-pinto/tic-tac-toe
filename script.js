@@ -301,7 +301,7 @@ const prompts = (function() {
         let cMarker;
         pMarker == 'x' ? cMarker = 'o' : cMarker = 'x'
 
-        game.setMatchType('PvP')
+        game.setMatchType('PvC')
         game.setPlayer('human', pMarker, 'Human')
         game.setPlayer('computer', cMarker, 'Computer')
     }
@@ -310,21 +310,22 @@ const prompts = (function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
-        game.setMatchType('PvC')
+        game.setMatchType('PvP')
         game.setPlayer('human','x', xName)
         game.setPlayer('human','o', oName)
     }
 
     const move = function() {
-
+        let matchType = game.getMatchType()
         let player = game.getPlayer()
-        let name = player.name
-        if (player.type == 'human') {
-            movePrompt = `${name}'s turn. Click an empty square to place move.`
-        } else {
+
+        if (matchType == 'PvC' && player.type == 'human') {
+            movePrompt = `Your turn. Click an empty square to place move.`
+        } else if (matchType == 'PvC' && player.type == 'computer') {
             movePrompt = `Computer's turn. Please wait...`
+        } else {
+            movePrompt = `${player.name}'s turn. Click an empty square to place move.`
         }
-        
     
         document.getElementById("prompt").innerHTML = movePrompt;
     }
