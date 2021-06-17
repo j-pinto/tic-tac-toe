@@ -38,7 +38,9 @@ const board = (function () {
         return array
     }
 
-    const addSquare = function(square, array) { 
+    const addSquare = function(square) {
+        player = game.getPlayer();
+        let array = getPlayerArray(player.marker); 
         return array.push(square) 
     }
 
@@ -47,11 +49,9 @@ const board = (function () {
             return false
         } 
 
-        let array = getPlayerArray(marker);
         if ( squareOccupied(input) ) {
             return false;
         } else {
-            addSquare(input, array);
             return true;
         }
     }
@@ -88,7 +88,7 @@ const board = (function () {
         }
     }
 
-    return { inputValid, refresh, win, tie }
+    return { inputValid, addSquare, refresh, win, tie }
 })();
 
 const game = (function () {
@@ -139,6 +139,7 @@ const game = (function () {
         squareNumber = parseInt(event.target.id.slice(-1))
     
         if (board.inputValid(marker, squareNumber)) {
+            board.addSquare(squareNumber);
             nextTurn();
         }
     }
@@ -149,6 +150,7 @@ const game = (function () {
         while (true) {
             randomMove = Math.floor(Math.random() * 9)
             if ( board.inputValid(compPlayer.marker, randomMove) ) {
+                board.addSquare(randomMove);
                 break;
             }
         }
