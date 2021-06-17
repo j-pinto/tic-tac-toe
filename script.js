@@ -155,7 +155,7 @@ const game = (function () {
             }
         }
 
-        nextTurn();
+        setTimeout(() => { nextTurn() }, 2500)
     }
 
     const nextTurn = function() {
