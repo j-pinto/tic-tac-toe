@@ -147,9 +147,6 @@ const game = (function () {
 
     const computerTurn = function() {
         endMouseListen();
-        setTimeout(() => {
-
-        }, 3000)
         let compPlayer = getPlayer()
         while (true) {
             randomMove = Math.floor(Math.random() * 9)
