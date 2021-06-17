@@ -107,6 +107,10 @@ const game = (function () {
         matchType = type;
     }
 
+    const getMatchType = function() {
+        return matchType;
+    }
+
     const setPlayer = function(type, marker, name) {
         if (marker == 'x') {
             playerX = new Player(type, marker, name);
@@ -188,7 +192,7 @@ const game = (function () {
         })
     }
 
-    return { play, getPlayer, setPlayer, setMatchType }
+    return { play, getPlayer, setPlayer, setMatchType, getMatchType }
 
 })();
 
@@ -312,6 +316,7 @@ const prompts = (function() {
     }
 
     const move = function() {
+
         let player = game.getPlayer()
         let name = player.name
         if (player.type == 'human') {
