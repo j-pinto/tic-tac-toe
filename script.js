@@ -290,8 +290,14 @@ const prompts = (function() {
     }
 
     const move = function() {
-        let name = game.getPlayer().name;
-        movePrompt = `${name}'s turn. Click an empty square to place move.`
+        let player = game.getPlayer()
+        let name = player.name
+        if (player.type == 'human') {
+            movePrompt = `${name}'s turn. Click an empty square to place move.`
+        } else {
+            movePrompt = `Computer's turn. Please wait...`
+        }
+        
     
         document.getElementById("prompt").innerHTML = movePrompt;
     }
