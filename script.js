@@ -173,7 +173,7 @@ const game = (function () {
 
         if ( board.win(player.marker) ) {
             endMouseListen();
-            prompts.winGame(player.name);
+            prompts.winGame();
         } else if ( board.tie() ) {
             endMouseListen();
             prompts.tieGame();
@@ -331,7 +331,17 @@ const prompts = (function() {
     }
     
     const winGame = function(name) {
-        winPrompt = `${name} is the winner!!!`
+        let matchType = game.getMatchType()
+        let player = game.getPlayer()
+
+        if (matchType == 'PvC' && player.type == 'human'){
+            winPrompt = `You are the winner!!!`
+        } else if (matchType == 'PvC' && player.type == 'computer') {
+            winPrompt = `The Computer wins!!!`
+        } else {
+            winPrompt = `${player.name} is the winner!!!`
+        }
+        
         document.getElementById("prompt").innerHTML = winPrompt
     }
     
