@@ -127,17 +127,10 @@ const game = (function () {
         }
     }
 
-    const mouseListen = function () {
+    const humanTurn = function() {
         let squares = document.getElementsByClassName("square")
         for (i = 0; i < squares.length; i++) {
             squares.item(i).addEventListener( 'click', executeHumanMove )
-        }
-    }
-
-    const endMouseListen = function() {
-        let squares = document.getElementsByClassName("square")
-        for (i = 0; i < squares.length; i++) {
-            squares.item(i).removeEventListener( 'click', executeHumanMove )
         }
     }
 
@@ -148,10 +141,6 @@ const game = (function () {
         if (board.inputValid(marker, squareNumber)) {
             nextTurn();
         }
-    }
-
-    const humanTurn = function() {
-        mouseListen();
     }
 
     const computerTurn = function() {
@@ -165,6 +154,13 @@ const game = (function () {
         }
 
         setTimeout(() => { nextTurn() }, 2500)
+    }
+
+    const endMouseListen = function() {
+        let squares = document.getElementsByClassName("square")
+        for (i = 0; i < squares.length; i++) {
+            squares.item(i).removeEventListener( 'click', executeHumanMove )
+        }
     }
 
     const nextTurn = function() {
@@ -341,7 +337,7 @@ const prompts = (function() {
         } else {
             winPrompt = `${player.name} is the winner!!!`
         }
-        
+
         document.getElementById("prompt").innerHTML = winPrompt
     }
     
