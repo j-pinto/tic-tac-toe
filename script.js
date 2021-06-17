@@ -299,6 +299,7 @@ const prompts = (function() {
         let cMarker;
         pMarker == 'x' ? cMarker = 'o' : cMarker = 'x'
 
+        game.setMatchType('PvP')
         game.setPlayer('human', pMarker, pName)
         game.setPlayer('computer', cMarker, 'Computer')
     }
@@ -307,6 +308,7 @@ const prompts = (function() {
         let xName = document.getElementById("xName").value
         let oName = document.getElementById("oName").value
 
+        game.setMatchType('PvC')
         game.setPlayer('human','x', xName)
         game.setPlayer('human','o', oName)
     }
