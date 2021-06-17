@@ -290,8 +290,6 @@ const prompts = (function() {
     }
 
     const createPvCPlayers = function() {
-        let pName = document.getElementById("pName").value
-
         let xRadioButton = document.getElementById("x_radio").checked
         let pMarker;
         xRadioButton == true ? pMarker = 'x' : pMarker = 'o'
@@ -300,7 +298,7 @@ const prompts = (function() {
         pMarker == 'x' ? cMarker = 'o' : cMarker = 'x'
 
         game.setMatchType('PvP')
-        game.setPlayer('human', pMarker, pName)
+        game.setPlayer('human', pMarker, 'Human')
         game.setPlayer('computer', cMarker, 'Computer')
     }
 
