@@ -95,11 +95,16 @@ const game = (function () {
     let turnCount = 0;
     let playerX = {};
     let playerO = {};
+    let matchType = '';
 
      function Player(type, marker, name) {
         this.type = type
         this.name = name
         this.marker = marker
+    }
+
+    const setMatchType = function(type) {
+        matchType = type;
     }
 
     const setPlayer = function(type, marker, name) {
@@ -183,7 +188,7 @@ const game = (function () {
         })
     }
 
-    return { play, getPlayer, setPlayer }
+    return { play, getPlayer, setPlayer, setMatchType }
 
 })();
 
