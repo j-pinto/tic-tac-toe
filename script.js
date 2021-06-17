@@ -145,6 +145,17 @@ const game = (function () {
         mouseListen();
     }
 
+    const computerTurn = function(compPlayer) {
+        while (true) {
+            randomMove = Math.floor(Math.random() * 9)
+            if ( board.inputValid(compPlayer.marker, randomMove) ) {
+                break;
+            }
+        }
+
+        nextTurn();
+    }
+
     const nextTurn = function() {
         board.refresh();
         marker = getPlayer().marker
