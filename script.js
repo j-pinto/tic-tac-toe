@@ -145,7 +145,12 @@ const game = (function () {
         mouseListen();
     }
 
-    const computerTurn = function(compPlayer) {
+    const computerTurn = function() {
+        endMouseListen();
+        setTimeout(() => {
+
+        }, 3000)
+        let compPlayer = getPlayer()
         while (true) {
             randomMove = Math.floor(Math.random() * 9)
             if ( board.inputValid(compPlayer.marker, randomMove) ) {
@@ -158,18 +163,18 @@ const game = (function () {
 
     const nextTurn = function() {
         board.refresh();
-        marker = getPlayer().marker
-        playerName = getPlayer().name
+        player = getPlayer();
 
-        if ( board.win(marker) ) {
+        if ( board.win(player.marker) ) {
             endMouseListen();
-            prompts.winGame(playerName);
+            prompts.winGame(player.name);
         } else if ( board.tie() ) {
             endMouseListen();
             prompts.tieGame();
         } else {
             turnCount++;
             prompts.move();
+            getPlayer().type == 'human' ? humanTurn() : computerTurn()
         }
     }
 
@@ -177,7 +182,7 @@ const game = (function () {
         prompts.setupSequence()
         .then(() => {
             prompts.move()
-            humanTurn()
+            getPlayer().type == 'human' ? humanTurn() : computerTurn()
         })
     }
 
