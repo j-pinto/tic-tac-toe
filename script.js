@@ -88,7 +88,7 @@ const board = (function () {
         }
     }
 
-    return { inputValid, addSquare, refresh, win, tie }
+    return { squareOccupied, inputValid, addSquare, refresh, win, tie }
 })();
 
 const game = (function () {
@@ -133,7 +133,7 @@ const game = (function () {
             squares.item(i).addEventListener( 'click', executeHumanMove )
         }
 
-        animations.highlightListen();
+        animations.setHighlight();
     }
 
     const executeHumanMove = function (event) {
@@ -354,8 +354,8 @@ const prompts = (function() {
 })();
 
 const animations = (function () {
-    const highlightListen = function() {
-        squares = document.getElementsByClassName("square")
+    const setHighlight = function() {
+        let squares = document.getElementsByClassName("square")
 
         for (let i = 0; i < squares.length; i++) {
             squares.item(i).addEventListener( 'mouseenter', () => {
@@ -367,7 +367,7 @@ const animations = (function () {
         }    
     }
 
-    return { highlightListen }
+    return { setHighlight }
 })();
 
 
