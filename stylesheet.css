@@ -55,6 +55,10 @@ label {
     font-size: 48pt;
 }
 
+.highlight {
+    background-color: rgb(169, 186, 203)
+}
+
 #square0 {
     grid-area: square0;
 }

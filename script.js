@@ -129,9 +129,11 @@ const game = (function () {
 
     const humanTurn = function() {
         let squares = document.getElementsByClassName("square")
-        for (i = 0; i < squares.length; i++) {
+        for (let i = 0; i < squares.length; i++) {
             squares.item(i).addEventListener( 'click', executeHumanMove )
         }
+
+        animations.highlightListen();
     }
 
     const executeHumanMove = function (event) {
@@ -160,7 +162,7 @@ const game = (function () {
 
     const endMouseListen = function() {
         let squares = document.getElementsByClassName("square")
-        for (i = 0; i < squares.length; i++) {
+        for (let i = 0; i < squares.length; i++) {
             squares.item(i).removeEventListener( 'click', executeHumanMove )
         }
     }
@@ -349,6 +351,20 @@ const prompts = (function() {
     }
 
     return { move, winGame, tieGame, setupSequence }
+})();
+
+const animations = (function () {
+    const highlightListen = function() {
+        squares = document.getElementsByClassName("square")
+        console.log(squares)
+        for (let i = 0; i < squares.length; i++) {
+            squares.item(i).addEventListener( 'mouseenter', () => {
+                squares.item(i).classList.add("highlight")
+            })
+        }    
+    }
+
+    return { highlightListen }
 })();
 
 
