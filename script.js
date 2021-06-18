@@ -363,12 +363,16 @@ const animations = (function () {
     }
 
     const highlightListen = function(square) {
-        square.addEventListener( 'mouseenter', () => {
-            square.classList.add("highlight")
-        })
-        square.addEventListener( 'mouseout', () => {
-            square.classList.remove("highlight")
-        })
+        square.addEventListener('mouseenter', addHighlight)
+        square.addEventListener('mouseout', removeHighlight)
+    }
+
+    const addHighlight = function(event) {
+        event.target.classList.add("highlight")
+    }
+
+    const removeHighlight = function(event) {
+        event.target.classList.remove("highlight")
     }
 
     return { setHighlight }
