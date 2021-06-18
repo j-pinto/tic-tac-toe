@@ -356,10 +356,13 @@ const prompts = (function() {
 const animations = (function () {
     const highlightListen = function() {
         squares = document.getElementsByClassName("square")
-        console.log(squares)
+
         for (let i = 0; i < squares.length; i++) {
             squares.item(i).addEventListener( 'mouseenter', () => {
                 squares.item(i).classList.add("highlight")
+            })
+            squares.item(i).addEventListener( 'mouseout', () => {
+                squares.item(i).classList.remove("highlight")
             })
         }    
     }
