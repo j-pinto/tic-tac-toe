@@ -358,13 +358,22 @@ const animations = (function () {
         let squares = document.getElementsByClassName("square")
 
         for (let i = 0; i < squares.length; i++) {
-            highlightListen(squares.item(i))
+            let square = squares.item(i)
+            if (square.innerHTML == "") {
+                highlightListen(square)
+            } else {
+                endHighlightListen(square)
+            }
         }    
     }
 
     const highlightListen = function(square) {
         square.addEventListener('mouseenter', addHighlight)
         square.addEventListener('mouseout', removeHighlight)
+    }
+
+    const endHighlightListen = function(square) {
+        square.removeEventListener('mouseenter', addHighlight)
     }
 
     const addHighlight = function(event) {
