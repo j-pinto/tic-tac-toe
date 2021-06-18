@@ -74,6 +74,7 @@ const board = (function () {
         winCombos.forEach(combo => {
             if ( combo.every(element => playerArray.includes(element)) ) {
                 isWin = true;
+                animations.win(combo);
             }
         })
         return isWin;
@@ -384,7 +385,14 @@ const animations = (function () {
         event.target.classList.remove("highlight")
     }
 
-    return { setHighlight }
+    const win = function(squaresArray) { 
+        squaresArray.forEach(squareNumber => {
+            square = "square" + squareNumber
+            document.getElementById(square).classList.add("green")
+        });
+    }
+
+    return { setHighlight, win }
 })();
 
 
