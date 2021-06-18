@@ -358,13 +358,17 @@ const animations = (function () {
         let squares = document.getElementsByClassName("square")
 
         for (let i = 0; i < squares.length; i++) {
-            squares.item(i).addEventListener( 'mouseenter', () => {
-                squares.item(i).classList.add("highlight")
-            })
-            squares.item(i).addEventListener( 'mouseout', () => {
-                squares.item(i).classList.remove("highlight")
-            })
+            highlightListen(squares.item(i))
         }    
+    }
+
+    const highlightListen = function(square) {
+        square.addEventListener( 'mouseenter', () => {
+            square.classList.add("highlight")
+        })
+        square.addEventListener( 'mouseout', () => {
+            square.classList.remove("highlight")
+        })
     }
 
     return { setHighlight }
