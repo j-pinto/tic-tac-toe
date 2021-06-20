@@ -1,3 +1,202 @@
+const board = (function () {
+    let xArray = [];
+    let oArray = [];
+
+    let winCombos = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+
+    const squareOccupied = function(square) {
+        let x = xArray;
+            o = oArray; 
+        if ( x.includes(square) || o.includes(square) ) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const badFormat = function (marker, input) {
+        if (marker != 'x' && marker != 'o') {
+            return true
+        } else if (input < 0 || input > 8 || !(Number.isInteger(input))) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const getPlayerArray = function(marker) {
+        array = marker == 'x' ? xArray : oArray
+        return array
+    }
+
+    const addSquare = function(square) {
+        player = game.getPlayer();
+        let array = getPlayerArray(player.marker); 
+        return array.push(square) 
+    }
+
+    const inputValid = function(marker, input) {
+        if (badFormat(marker, input)) {
+            return false
+        } 
+
+        if ( squareOccupied(input) ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    const refresh = function() {
+        let squares = document.getElementsByClassName("square")
+        xArray.forEach(element => {
+            squares.item(element).innerHTML = 'x'
+        });
+
+        oArray.forEach(element => {
+            squares.item(element).innerHTML = 'o'
+        });
+    }
+
+    const win = function(marker) {
+        let isWin = false;
+        playerArray = getPlayerArray(marker);
+
+        winCombos.forEach(combo => {
+            if ( combo.every(element => playerArray.includes(element)) ) {
+                isWin = true;
+                animations.win(combo);
+            }
+        })
+        return isWin;
+    }
+
+    const tie = function() {
+        occupiedSquares = xArray.length + oArray.length
+        if (occupiedSquares >= 9) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    return { squareOccupied, inputValid, addSquare, refresh, win, tie }
+})();
+
+const game = (function () {
+    let turnCount = 0;
+    let playerX = {};
+    let playerO = {};
+    let matchType = '';
+
+     function Player(type, marker, name) {
+        this.type = type
+        this.name = name
+        this.marker = marker
+    }
+
+    const setMatchType = function(type) {
+        matchType = type;
+    }
+
+    const getMatchType = function() {
+        return matchType;
+    }
+
+    const setPlayer = function(type, marker, name) {
+        if (marker == 'x') {
+            playerX = new Player(type, marker, name);
+        } else {
+            playerO = new Player(type, marker, name);
+        }
+    }
+
+    const getPlayer = function() {
+        if (turnCount % 2 == 0) {
+            return playerX
+        } else {
+            return playerO
+        }
+    }
+
+    const humanTurn = function() {
+        let squares = document.getElementsByClassName("square")
+        for (let i = 0; i < squares.length; i++) {
+            squares.item(i).addEventListener( 'click', executeHumanMove )
+        }
+
+        animations.setHighlight();
+    }
+
+    const executeHumanMove = function (event) {
+        marker = getPlayer().marker
+        squareNumber = parseInt(event.target.id.slice(-1))
+    
+        if (board.inputValid(marker, squareNumber)) {
+            board.addSquare(squareNumber);
+            nextTurn();
+        }
+    }
+
+    const computerTurn = function() {
+        endMouseListen();
+        let compPlayer = getPlayer()
+        while (true) {
+            randomMove = Math.floor(Math.random() * 9)
+            if ( board.inputValid(compPlayer.marker, randomMove) ) {
+                board.addSquare(randomMove);
+                break;
+            }
+        }
+
+        setTimeout(() => { nextTurn() }, 2500)
+    }
+
+    const endMouseListen = function() {
+        let squares = document.getElementsByClassName("square")
+        for (let i = 0; i < squares.length; i++) {
+            squares.item(i).removeEventListener( 'click', executeHumanMove )
+        }
+    }
+
+    const nextTurn = function() {
+        board.refresh();
+        player = getPlayer();
+
+        if ( board.win(player.marker) ) {
+            endMouseListen();
+            prompts.winGame();
+        } else if ( board.tie() ) {
+            endMouseListen();
+            prompts.tieGame();
+        } else {
+            turnCount++;
+            prompts.move();
+            getPlayer().type == 'human' ? humanTurn() : computerTurn()
+        }
+    }
+
+    const play = function() {
+        prompts.setupSequence()
+        .then(() => {
+            prompts.move()
+            getPlayer().type == 'human' ? humanTurn() : computerTurn()
+        })
+    }
+
+    return { play, getPlayer, setPlayer, setMatchType, getMatchType }
+
+})();
+
 const prompts = (function() {
     const setupSequence = function() {
         return new Promise(function (resolve) {
