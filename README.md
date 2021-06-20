@@ -18,5 +18,6 @@
 ### Developement
 * Basic unit testing used during developement of core game logic
 
-## Learnings
+## Learnings and Future Goals
 * Learnings included but not limited to: Javascript promises and basic unit testing; CSS grid, flexbox, and animations/transitions.
+* Currently computer opponent chooses a random legal move. A future update should include a computer player that uses a minimax algorithm to choose its move, as well as opponent difficulty adjustment options.
