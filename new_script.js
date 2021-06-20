@@ -74,7 +74,7 @@ const board = (function () {
         winCombos.forEach(combo => {
             if ( combo.every(element => playerArray.includes(element)) ) {
                 isWin = true;
-                animations.win(combo);
+                animation.win(combo);
             }
         })
         return isWin;
@@ -134,7 +134,7 @@ const game = (function () {
             squares.item(i).addEventListener( 'click', executeHumanMove )
         }
 
-        animations.setHighlight();
+        animation.setHighlight();
     }
 
     const executeHumanMove = function (event) {
@@ -426,9 +426,46 @@ const animation = (function() {
         })
     }
 
+    const setHighlight = function() {
+        let squares = document.getElementsByClassName("square")
+
+        for (let i = 0; i < squares.length; i++) {
+            let square = squares.item(i)
+            if (square.innerHTML == "") {
+                highlightListen(square)
+            } else {
+                endHighlightListen(square)
+            }
+        }    
+    }
+
+    const highlightListen = function(square) {
+        square.addEventListener('mouseenter', addHighlight)
+        square.addEventListener('mouseout', removeHighlight)
+    }
+
+    const endHighlightListen = function(square) {
+        square.removeEventListener('mouseenter', addHighlight)
+    }
+
+    const addHighlight = function(event) {
+        event.target.classList.add("highlight")
+    }
+
+    const removeHighlight = function(event) {
+        event.target.classList.remove("highlight")
+    }
+
+    const win = function(squaresArray) { 
+        squaresArray.forEach(squareNumber => {
+            square = "square" + squareNumber
+            document.getElementById(square).classList.add("green")
+        });
+    }
+
     return { 
-        gameModeFadeOut, singlePlayerInfoFadeIn, twoPlayerInfoFadeIn, setupFadeOut, boardFadeIn 
+        gameModeFadeOut, singlePlayerInfoFadeIn, twoPlayerInfoFadeIn, setupFadeOut, boardFadeIn, setHighlight, win 
     }
 })();
 
-prompts.setupSequence()
+game.play();

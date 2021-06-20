@@ -122,6 +122,19 @@ html {
     font-size: 48pt;
 }
 
+.highlight {
+    background-color: rgb(169, 186, 203)
+}
+
+.green {
+    transition: all 2s;
+    background-color: rgb(99, 214, 99);
+
+    box-sizing: border-box;
+    border: black solid;
+    border-radius: 8px;
+}
+
 #square0 { grid-area: square0; }
 
 #square1 { grid-area: square1; } 
