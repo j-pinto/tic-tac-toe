@@ -18,7 +18,7 @@ html {
     animation: fade-in 1.5s ease-out;
 }
 
-#title-text {
+#title {
     grid-area: title;
     justify-self: center;
     align-self: end;
@@ -80,7 +80,68 @@ html {
     align-items: center;
 }
 
+#board {
+    display: none;
+
+    height: 300px;
+    width: 300px;
+    margin-top: 100px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: 100px, 100px, 100px;
+    grid-template-rows: 100px, 100px, 100px;
+    grid-template-areas: 
+        "square0 square1 square2"
+        "square3 square4 square5"
+        "square6 square7 square8"
+}
+
+#prompt-div {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.square {
+    height: 90px;
+    width: 90px;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightslategrey;
+    color: white;
+    font-size: 48pt;
+}
+
+#square0 { grid-area: square0; }
+
+#square1 { grid-area: square1; } 
+
+#square2 { grid-area: square2; }
+
+#square3 { grid-area: square3; } 
+
+#square4 { grid-area: square4; } 
+
+#square5 { grid-area: square5; }
+
+#square6 { grid-area: square6; } 
+
+#square7 { grid-area: square7; } 
+
+#square8 { grid-area: square8; } 
+
 @keyframes fade-in {
     from {opacity: 0;}
     to {opacity: 100;}
 }
+
