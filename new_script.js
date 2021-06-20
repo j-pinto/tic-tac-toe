@@ -299,7 +299,42 @@ const prompts = (function() {
         document.getElementById("p2name").value = ''
     }
 
-    return { setupSequence }
+    const move = function() {
+        let matchType = game.getMatchType()
+        let player = game.getPlayer()
+
+        if (matchType == 'PvC' && player.type == 'human') {
+            movePrompt = `Your turn. Click an empty square to place move.`
+        } else if (matchType == 'PvC' && player.type == 'computer') {
+            movePrompt = `Computer's turn. Please wait...`
+        } else {
+            movePrompt = `${player.name}'s turn. Click an empty square to place move.`
+        }
+    
+        document.getElementById("prompt").innerHTML = movePrompt;
+    }
+    
+    const winGame = function(name) {
+        let matchType = game.getMatchType()
+        let player = game.getPlayer()
+
+        if (matchType == 'PvC' && player.type == 'human'){
+            winPrompt = `You are the winner!!!`
+        } else if (matchType == 'PvC' && player.type == 'computer') {
+            winPrompt = `The Computer wins!!!`
+        } else {
+            winPrompt = `${player.name} is the winner!!!`
+        }
+
+        document.getElementById("prompt").innerHTML = winPrompt
+    }
+    
+    const tieGame = function() {
+        tiePrompt = `Game is a draw`
+        document.getElementById("prompt").innerHTML = tiePrompt
+    }
+
+    return { move, winGame, tieGame, setupSequence }
 })();
 
 const animation = (function() {
