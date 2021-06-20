@@ -16,7 +16,8 @@
 * Winning squares transion their appearance at end of game.
 
 ### Developement
-* Basic unit testing used during developement of core game logic
+* Basic unit testing used during developement of core game logic.
+* Functions separated in to logical modules and made accessible outside the module as necessary.
 
 ## Learnings and Future Goals
 * Learnings included but not limited to: Javascript promises and basic unit testing; CSS grid, flexbox, and animations/transitions.
