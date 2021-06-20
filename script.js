@@ -301,6 +301,9 @@ const prompts = (function() {
         p1Name = document.getElementById("p1name").value
         p2Name = document.getElementById("p2name").value
 
+        if (p1Name == '') {p1Name = 'Player 1'}
+        if (p2Name == '') {p2Name = 'Player 2'}
+
         game.setMatchType('PvP')
         game.setPlayer('human','x', p1Name)
         game.setPlayer('human','o', p2Name)
