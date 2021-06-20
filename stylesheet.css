@@ -85,8 +85,8 @@ html {
 
     height: 300px;
     width: 300px;
-    margin-top: 100px;
-    margin-bottom: auto;
+    margin-top: 70px;
+    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
 
@@ -103,9 +103,13 @@ html {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 0;
 
-    margin-top: 30px;
     font-size: 20px;
+}
+
+#prompt {
+    margin-bottom: 30px;
 }
 
 .square {
