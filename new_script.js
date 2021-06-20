@@ -185,10 +185,20 @@ const game = (function () {
         }
     }
 
+    const refreshListen = function() {
+        let refreshBtn = document.getElementById("refresh-button")
+        refreshBtn.addEventListener('mouseup', refresh) 
+    }
+
+    const refresh = function(bool) {
+        location.reload()
+    }
+
     const play = function() {
         prompts.setupSequence()
         .then(() => {
             prompts.move()
+            refreshListen()
             getPlayer().type == 'human' ? humanTurn() : computerTurn()
         })
     }
