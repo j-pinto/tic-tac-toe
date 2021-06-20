@@ -479,3 +479,6 @@ const animation = (function() {
 })();
 
 game.play();
+
+//for testing
+module.exports = board
