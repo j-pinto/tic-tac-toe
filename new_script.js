@@ -258,9 +258,9 @@ const prompts = (function() {
             let enterBtn = document.getElementById("enter-marker-button")
             enterBtn.addEventListener('click', () => {
                 if (xButton.style.backgroundColor == selected) {
-                    //createPvCPlayers('x')
+                    createPvCPlayers('x')
                 } else {
-                    //createPvCPlayers('o')
+                    createPvCPlayers('o')
                 }
                 resolve()
             })
@@ -269,15 +269,34 @@ const prompts = (function() {
     
     const enterTwoPlayerInfo = function() {
         return new Promise(function(resolve) {
-            let p1Name = document.getElementById("p1Name")
-            let p2Name = document.getElementById("p2Name")
             let playBtn = document.getElementById("enter-names-button")
-    
             playBtn.addEventListener('click', () => {
-                //createPvPPlayers(p1Name.value, p2Name.value)
+                createPvPPlayers()
                 resolve()
             })
         })
+    }
+
+    const createPvCPlayers = function(marker) {
+        let pMarker = marker
+        let cMarker;
+        pMarker == 'x' ? cMarker = 'o' : cMarker = 'x'
+
+        game.setMatchType('PvC')
+        game.setPlayer('human', pMarker, 'Human')
+        game.setPlayer('computer', cMarker, 'Computer')
+    }
+
+    const createPvPPlayers = function() {
+        p1Name = document.getElementById("p1name").value
+        p2Name = document.getElementById("p2name").value
+
+        game.setMatchType('PvP')
+        game.setPlayer('human','x', p1Name)
+        game.setPlayer('human','o', p2Name)
+
+        document.getElementById("p1name").value = ''
+        document.getElementById("p2name").value = ''
     }
 
     return { setupSequence }
