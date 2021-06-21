@@ -20,5 +20,5 @@
 * Functions separated in to logical modules and made accessible outside the module as necessary.
 
 ## Learnings and Future Goals
-* Learnings included but not limited to: Javascript promises, objects, factory functions, modules, and basic unit testing; CSS grid, flexbox, and animations/transitions.
+* Learnings included but not limited to: Javascript promises, objects, factory functions, module patterns, and basic unit testing; CSS grid, flexbox, and animations/transitions.
 * Currently computer opponent chooses a random legal move. A future update should include a computer player that uses a minimax algorithm to choose its move, as well as opponent difficulty adjustment options.
